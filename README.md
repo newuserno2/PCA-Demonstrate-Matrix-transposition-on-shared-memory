@@ -390,10 +390,70 @@ return EXIT_SUCCESS;
 
 ##OUTPUT:
 
-root@SAV-MLSystem:/home/student/exp_6# ./checkSmemRectangle
+root@MidPC:/home/student/Desktop# nvcc test.cu
+root@MidPC:/home/student/Desktop# ./a.out
+./a.out at device 0: NVIDIA GeForce GTX 1660 SUPER with Bank Mode:4-Byte <<< grid (1,1) block (16,16)>>>
+root@MidPC:/home/student/Desktop# nvprof ./a.out
+==14603== NVPROF is profiling process 14603, command: ./a.out
+./a.out at device 0: NVIDIA GeForce GTX 1660 SUPER with Bank Mode:4-Byte <<< grid (1,1) block (16,16)>>>
+==14603== Profiling application: ./a.out
+==14603== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   35.10%  7.8410us         7  1.1200us  1.1200us  1.1210us  [CUDA memcpy DtoH]
+ 
+                   32.52%  7.2640us         7  1.0370us     960ns  1.4720us  [CUDA memset]
+                   
+                    4.73%  1.0560us         1  1.0560us  1.0560us  1.0560us  setRowReadCol(int*)
+                    
+                    4.73%  1.0560us         1  1.0560us  1.0560us  1.0560us  setColReadCol2(int*)
+                    
+                    4.73%  1.0560us         1  1.0560us  1.0560us  1.0560us  setRowReadColDyn(int*)
+                    
+                    4.58%  1.0240us         1  1.0240us  1.0240us  1.0240us  setRowReadColDynPad(int*)
+                    
+                    4.58%  1.0240us         1  1.0240us  1.0240us  1.0240us  setColReadCol(int*)
+                    
+                    4.58%  1.0240us         1  1.0240us  1.0240us  1.0240us  setRowReadColPad(int*)
+                    
+                    4.44%     992ns         1     992ns     992ns     992ns  setRowReadRow(int*)
+                    
+      API calls:   74.98%  139.00ms         1  139.00ms  139.00ms  139.00ms  cudaDeviceGetSharedMemConfig
+      
+                   24.49%  45.404ms         1  45.404ms  45.404ms  45.404ms  cudaDeviceReset
+                   
+                    0.12%  215.90us        97  2.2250us     170ns  93.829us  cuDeviceGetAttribute
+                    
+                    0.11%  195.87us         1  195.87us  195.87us  195.87us  cuDeviceTotalMem
+                    
+                    0.10%  186.03us         1  186.03us  186.03us  186.03us  cudaGetDeviceProperties
+                    
+                    0.06%  110.17us         1  110.17us  110.17us  110.17us  cudaMalloc
+                    
+                    0.04%  78.960us         1  78.960us  78.960us  78.960us  cudaFree
+                    
+                    0.04%  73.669us         7  10.524us  9.3100us  14.940us  cudaMemcpy
+                    
+                    0.03%  50.060us         7  7.1510us  4.2900us  23.140us  cudaLaunchKernel
+                    
+                    0.02%  33.690us         1  33.690us  33.690us  33.690us  cuDeviceGetName
+                    
+                    0.02%  29.020us         7  4.1450us  2.5200us  12.920us  cudaMemset
+                    
+                    0.00%  4.6900us         1  4.6900us  4.6900us  4.6900us  cuDeviceGetPCIBusId
+                    
+                    0.00%  2.6800us         1  2.6800us  2.6800us  2.6800us  cudaSetDevice
+                    
+                    0.00%  2.1600us         3     720ns     180ns  1.7500us  cuDeviceGetCount
+                    
+                    0.00%     750ns         2     375ns     170ns     580ns  cuDeviceGet
+                    
+                    0.00%     240ns         1     240ns     240ns     240ns  cuDeviceGetUuid
+root@MidPC:/home/student/Desktop# 106
 
-./checkSmemRectangle at device 0: NVIDIA GeForce GT 710 with Bank Mode:4-Byte <<< grid (1,1)
-block (16,16)>>>
+![image](https://github.com/newuserno2/PCA-Demonstrate-Matrix-transposition-on-shared-memory/assets/133124928/9778ac4f-9504-4aa4-90e9-9564cb982e67)
+
+
+
 
 ##RESULT:
 
